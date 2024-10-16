@@ -1,8 +1,17 @@
-# Project Name
+# Real-Time Weather Monitoring System
 
 ## Description
 
-A brief description of your project, what it does, and its main features.
+This project is a real-time data processing system designed to monitor weather conditions and provide summarized insights using rollups and aggregates. The system retrieves weather data from the OpenWeatherMap API and processes it to generate daily summaries and alerts based on user-defined thresholds.
+
+## Features
+
+- Continuous retrieval of weather data from the OpenWeatherMap API.
+- Conversion of temperature values from Kelvin to Celsius.
+- Daily weather summaries with average, maximum, and minimum temperatures, and dominant weather conditions.
+- User-configurable alert thresholds for temperature and specific weather conditions.
+- Real-time alerting when thresholds are breached.
+- Visualizations for daily weather summaries, historical trends, and triggered alerts.
 
 ## Build Instructions
 
@@ -11,8 +20,8 @@ To build and run this project, follow these steps:
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo
+   git clone https://github.com/skorni24/real-climate.git
+   cd real-climate
    ```
 
 2. **Install dependencies:**
@@ -44,39 +53,3 @@ List of dependencies required to set up and run the application:
 
 - **Node.js:** Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
 - **Docker:** If you are using Docker for any services, ensure Docker is installed. You can download it from [docker.com](https://www.docker.com/).
-
-### Docker Setup
-
-If your application requires additional services like a web server or a database, you can set them up using Docker:
-
-1. **Web Server:**
-
-   ```dockerfile
-   # Dockerfile for web server
-   FROM node:14
-   WORKDIR /app
-   COPY . .
-   RUN npm install
-   CMD ["npm", "start"]
-   ```
-
-2. **Database:**
-   ```yaml
-   # docker-compose.yml for database
-   version: "3.1"
-   services:
-     db:
-       image: postgres:latest
-       environment:
-         POSTGRES_USER: user
-         POSTGRES_PASSWORD: password
-         POSTGRES_DB: mydatabase
-       ports:
-         - "5432:5432"
-   ```
-
-To start the services, run:
-
-```sh
-docker-compose up
-```
