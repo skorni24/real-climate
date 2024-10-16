@@ -126,6 +126,20 @@ const WeatherComponent = () => {
       : `${celsiusToFahrenheit(temp).toFixed(2)}°F`;
   };
 
+  /*************  ✨ Codeium Command ⭐  *************/
+  /**
+   * Returns a CSS class name based on the given weather condition.
+   * The classes are:
+   * - "sunny" for clear and sunny conditions
+   * - "cloudy" for cloudy conditions
+   * - "rainy" for rainy conditions
+   * - "snowy" for snowy conditions
+   * - "stormy" for thunderstorm conditions
+   * - "" for all other conditions
+   * @param {string} main - The weather condition
+   * @return {string} A CSS class name
+   */
+  /******  7979675a-eb0a-48b4-9294-0b2f7f07cc17  *******/
   const getWeatherClass = (main) => {
     switch (main.toLowerCase()) {
       case "clear":

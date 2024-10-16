@@ -1,5 +1,3 @@
-/* WeatherComponent.css */
-
 .container {
   font-family: Arial, sans-serif;
   max-width: 600px;
@@ -8,6 +6,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.5s ease;
 }
 
 h1 {
@@ -83,4 +82,26 @@ button:hover {
 .summary-item p,
 .alert-item p {
   margin: 5px 0;
+}
+
+/* Weather-specific themes */
+.sunny {
+  background-color: #ffeb3b;
+}
+
+.cloudy {
+  background-color: #90a4ae;
+}
+
+.rainy {
+  background-color: #4fc3f7;
+}
+
+.snowy {
+  background-color: #e1f5fe;
+}
+
+.stormy {
+  background-color: #616161;
+  color: white;
 }
