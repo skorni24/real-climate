@@ -52,4 +52,3 @@ To build and run this project, follow these steps:
 List of dependencies required to set up and run the application:
 
 - **Node.js:** Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
-- **Docker:** If you are using Docker for any services, ensure Docker is installed. You can download it from [docker.com](https://www.docker.com/).
