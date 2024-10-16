@@ -9,14 +9,6 @@ app.use(express.json());
 
 // Weather Monitoring logic
 const API_KEY = "f617fe3305b7e0b05adffd6009fa6479";
-const CITIES = [
-  "Delhi",
-  "Mumbai",
-  "Chennai",
-  "Bangalore",
-  "Kolkata",
-  "Hyderabad",
-];
 
 let cachedWeatherData = {};
 const REFRESH_INTERVAL = 5 * 60 * 1000; // 5 minutes in milliseconds
@@ -36,28 +28,22 @@ async function getWeatherData(city) {
   };
 }
 
-async function fetchWeatherData() {
+async function fetchWeatherData(city) {
   try {
-    const weatherPromises = CITIES.map((city) => getWeatherData(city));
-    const weatherDataArray = await Promise.all(weatherPromises);
-    weatherDataArray.forEach((weatherData) => {
-      cachedWeatherData[weatherData.city] = weatherData;
-    });
+    const weatherData = await getWeatherData(city);
+    cachedWeatherData[city] = weatherData;
   } catch (error) {
-    console.error("Failed to fetch weather data", error);
+    console.error(`Failed to fetch weather data for ${city}`, error);
   }
 }
 
-// Initial fetch
-fetchWeatherData();
-
-// Refresh data every 5 minutes
-setInterval(fetchWeatherData, REFRESH_INTERVAL);
-
 // Weather Monitoring API endpoint
-app.get("/api/weather", (req, res) => {
+app.get("/api/weather", async (req, res) => {
   const city = req.query.city;
   if (city) {
+    if (!cachedWeatherData[city]) {
+      await fetchWeatherData(city);
+    }
     const weatherData = cachedWeatherData[city];
     if (weatherData) {
       res.json(weatherData);
