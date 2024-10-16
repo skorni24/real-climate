@@ -15,6 +15,7 @@ const WeatherComponent = () => {
   const [showAlerts, setShowAlerts] = useState(false);
 
   const temperatureThreshold = 35; // Example threshold
+  const API_KEY = "f617fe3305b7e0b05adffd6009fa6479"; // Replace with your actual API key
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -23,10 +24,6 @@ const WeatherComponent = () => {
 
     return () => clearInterval(intervalId);
   }, []);
-
-  const kelvinToCelsius = (kelvin) => {
-    return kelvin;
-  };
 
   const celsiusToFahrenheit = (celsius) => {
     return (celsius * 9) / 5 + 32;
@@ -39,15 +36,15 @@ const WeatherComponent = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3001/api/weather?city=${city}`
+        `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
       );
       const data = await response.json();
       if (response.ok) {
-        const tempCelsius = kelvinToCelsius(data.temp);
-        const feelsLikeCelsius = kelvinToCelsius(data.feels_like);
+        const tempCelsius = data.main.temp - 273.15;
+        const feelsLikeCelsius = data.main.feels_like - 273.15;
         const newWeatherData = {
-          city: data.city,
-          main: data.main,
+          city: data.name,
+          main: data.weather[0].main,
           temp: tempCelsius,
           feels_like: feelsLikeCelsius,
           timestamp: data.dt,
@@ -181,9 +178,8 @@ const WeatherComponent = () => {
             </button>
           </p>
           <p>Feels Like: {displayTemperature(weatherData.feels_like)}</p>
-          <div className="current-time">
-            <p>Current Time (Unix): {currentTime}</p>
-          </div>
+          {/* <p>Timestamp (Unix): {weatherData.timestamp}</p> */}
+          <p>Current Time (Unix): {currentTime}</p>
         </div>
       )}
       <button onClick={() => setShowDailySummaries(!showDailySummaries)}>
