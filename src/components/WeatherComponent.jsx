@@ -14,8 +14,8 @@ const WeatherComponent = () => {
   const [showDailySummaries, setShowDailySummaries] = useState(false);
   const [showAlerts, setShowAlerts] = useState(false);
 
-  const temperatureThreshold = 35; // Example threshold
-  const API_KEY = "f617fe3305b7e0b05adffd6009fa6479"; // Replace with your actual API key
+  const temperatureThreshold = 35;
+  const API_KEY = "f617fe3305b7e0b05adffd6009fa6479";
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -125,27 +125,14 @@ const WeatherComponent = () => {
       ? `${temp.toFixed(2)}°C`
       : `${celsiusToFahrenheit(temp).toFixed(2)}°F`;
   };
-
-  /*************  ✨ Codeium Command ⭐  *************/
-  /**
-   * Returns a CSS class name based on the given weather condition.
-   * The classes are:
-   * - "sunny" for clear and sunny conditions
-   * - "cloudy" for cloudy conditions
-   * - "rainy" for rainy conditions
-   * - "snowy" for snowy conditions
-   * - "stormy" for thunderstorm conditions
-   * - "" for all other conditions
-   * @param {string} main - The weather condition
-   * @return {string} A CSS class name
-   */
-  /******  7979675a-eb0a-48b4-9294-0b2f7f07cc17  *******/
   const getWeatherClass = (main) => {
     switch (main.toLowerCase()) {
       case "clear":
       case "sunny":
         return "sunny";
       case "clouds":
+      case "mist":
+      case "haze":
         return "cloudy";
       case "rain":
       case "drizzle":
