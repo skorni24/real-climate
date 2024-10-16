@@ -52,3 +52,11 @@ To build and run this project, follow these steps:
 List of dependencies required to set up and run the application:
 
 - **Node.js:** Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
+
+## Backend
+
+`weather.js` is the file that contains the API which connects to our frontend React app. First, you have to run this file outside the React application and then run react application.
+
+```sh
+node weather.js
+```
